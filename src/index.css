@@ -1,0 +1,66 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #1e1e1e;
+  color: #e0e0e0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Print / PDF export ────────────────────────────────────────────────── */
+@media print {
+  html, body, #root {
+    height: auto;
+    overflow: visible;
+  }
+
+  .toolbar,
+  .sidebar,
+  .format-bar,
+  .block__type-label {
+    display: none !important;
+  }
+
+  .app, .layout, .editor-area, .editor-column {
+    display: block;
+    overflow: visible;
+  }
+
+  .screenplay-wrapper {
+    display: block;
+    overflow: visible;
+    padding: 0;
+    background: transparent;
+  }
+
+  .screenplay-page {
+    box-shadow: none;
+    margin: 0;
+    width: 100%;
+    min-height: 0;
+    break-after: page;
+  }
+
+  .screenplay-page:last-of-type {
+    break-after: auto;
+  }
+
+  /* keep character name with dialogue */
+  .block--character { page-break-after: avoid; }
+  .block--parenthetical { page-break-after: avoid; }
+  .block--scene-heading { page-break-after: avoid; }
+
+  @page {
+    size: letter portrait;
+    margin: 0;
+  }
+}

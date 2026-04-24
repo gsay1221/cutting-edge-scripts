@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(curl -s http://localhost:5173)",
+      "Bash(npm install *)",
+      "Bash(npx vercel *)",
+      "Bash(~/.npm-global/bin/vercel *)",
+      "Bash(node *)",
+      "Bash(git -C /Users/georgesayah/Desktop/cutting-edge-scripts status)"
+    ]
+  }
+}
