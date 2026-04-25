@@ -31,7 +31,7 @@ function looksLikePageNumber(s) {
   return /^\d{1,3}\.?$/.test(s.trim());
 }
 
-function detectType(text, xRatio, prevType) {
+function detectType(text, xRatio, _prevType) {
   if (looksLikeSceneHeading(text))  return TYPES.SCENE_HEADING;
   if (looksLikeTransition(text))    return TYPES.TRANSITION;
   if (looksLikeParenthetical(text)) return TYPES.PARENTHETICAL;

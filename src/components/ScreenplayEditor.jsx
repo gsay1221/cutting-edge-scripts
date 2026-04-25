@@ -174,7 +174,12 @@ export default function ScreenplayEditor({
     };
   });
 
-  // Measure block heights and recompute page breaks before the browser paints
+  // Measure block heights and recompute page breaks before the browser paints.
+  // Intentionally has no deps array: pagination depends on rendered DOM heights,
+  // which can change for reasons React doesn't track (font load, line wrapping
+  // from text edits, etc.), so the effect must run after every render.
+  // The JSON.stringify equality guard below prevents an infinite render loop.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useLayoutEffect(() => {
     const wrapperEl = resolvedRef.current;
     if (!wrapperEl) return;
@@ -205,6 +210,7 @@ export default function ScreenplayEditor({
           pos: refs.current[activeId]?.getCursorPos() ?? 0,
         };
       }
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setPageBreaks(newBreaks);
     }
   });
